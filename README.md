@@ -194,7 +194,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Issues**: [GitHub Issues](https://github.com/PrivacyRights/NPT-GPU-Miner/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/PrivacyRights/NPT-GPU-Miner/discussions)
-- **Community**: Join our Discord server
+- **Twitter**: [@Catzpool](https://x.com/Catzpool)
+- **Telegram**: [CatsPool Community](https://t.me/catzpool)
+- **Discord**: [Join our Discord](https://discord.gg/SDDQ6hd9Rc)
 - **Documentation**: [Wiki](https://github.com/PrivacyRights/NPT-GPU-Miner/wiki)
 
 ## 🙏 Acknowledgments
