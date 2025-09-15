@@ -103,7 +103,7 @@ Choose the appropriate miner binary based on your GPU:
 ## 🏊‍♂️ Mining Pools
 
 ### Recommended Pools
-- **CatsPool** - First NPT GPU mining pool with 1% fees
+- **CatsPool** - First NPT GPU mining pool with 0% fees
 - **Direct rewards** to miners
 - **gRPC architecture** for low latency
 - **99.9% uptime** guarantee
