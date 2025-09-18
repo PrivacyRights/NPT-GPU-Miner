@@ -15,6 +15,7 @@ A high-performance GPU Solo-mining software for Neptune Cash (NPT) cryptocurrenc
 - **RTX 6000 ADA** - 6.5 MN/s  
 - **A40** - 3.5 MN/s
 - **RTX 5090** - 2.8 MN/s
+- **RTX 6000** - 2.7 MN/s  
 - **RTX 4090** - 2.1 MN/s
 
 ## 📥 Installation
