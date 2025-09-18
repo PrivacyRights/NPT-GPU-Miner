@@ -1,6 +1,6 @@
 # NPT GPU Miner
 
-A high-performance GPU mining software for Neptune Cash (NPT) cryptocurrency, optimized for NVIDIA GPUs with 21GB+ VRAM.
+A high-performance GPU Solo-mining software for Neptune Cash (NPT) cryptocurrency, optimized for NVIDIA GPUs with 21GB+ VRAM.   Utilizes proxy with https://catspool.org to optimize results (nonce offset coordination).   However, this is very much Solo mining.    Solo mining is currently the only way to get your locked rewards on Neptune Cash, which is half of the mining reward.
 
 ## 🚀 Quick Start
 
