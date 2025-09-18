@@ -15,8 +15,9 @@ A high-performance GPU Solo-mining software for Neptune Cash (NPT) cryptocurrenc
 - **RTX 6000 ADA** - 6.5 MN/s  
 - **A40** - 3.5 MN/s
 - **RTX 5090** - 2.8 MN/s
-- **RTX 6000** - 2.7 MN/s  
+- **RTX 6000** - 2.7 MN/s 
 - **RTX 4090** - 2.1 MN/s
+- **RTX 3090** - 1.0 MN/s
 
 ## 📥 Installation
 
@@ -30,7 +31,7 @@ A high-performance GPU Solo-mining software for Neptune Cash (NPT) cryptocurrenc
    cd NPT-GPU-Miner-0.02
    
    # Make binaries executable
-   chmod +x miner_21g miner_42g miner_a6000 miner-bridge
+   chmod +x miner_21g miner_42g miner_a6000 miner_3090 miner-bridge
    ```
 
 2. **Download run-miner.sh from CatsPool**
@@ -60,6 +61,10 @@ Choose the appropriate miner binary based on your GPU:
 ### RTX A6000 GPUs
 - **RTX A6000**
 - Use: `./miner_a6000`
+
+### RTX 3090 GPUs
+- **RTX 3090**
+- Use: `./miner_3090`
 
 ### Standard GPUs (21GB+ VRAM)
 - **RTX 4090, RTX 5090**
@@ -112,11 +117,14 @@ done
 
 ### Basic Usage
 ```bash
-# For high memory GPUs (L40S, A40)
+# For high memory GPUs (L40S, A40, RTX A6000 ADA)
 ./miner_42g --gpu 0 --nonce-offset 123456
 
 # For RTX A6000
 ./miner_a6000 --gpu 0 --nonce-offset 789012
+
+# For RTX 3090
+./miner_3090 --gpu 0 --nonce-offset 456789
 
 # For standard GPUs (RTX 4090, RTX 5090)
 ./miner_21g --gpu 0 --nonce-offset 345678
@@ -148,7 +156,9 @@ done
 | RTX 6000 ADA | 6.5 MN/s | ~28 NPT/h | ~300W |
 | A40 | 3.5 MN/s | ~15 NPT/h | ~250W |
 | RTX 5090 | 2.8 MN/s | ~13 NPT/h | ~450W |
+| RTX 6000 | 2.7 MN/s | ~12 NPT/h | ~300W |
 | RTX 4090 | 2.1 MN/s | ~10 NPT/h | ~450W |
+| RTX 3090 | 1.0 MN/s | ~3 NPT/h | ~350W |
 
 *Performance may vary based on system configuration and overclocking.*
 
