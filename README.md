@@ -19,19 +19,31 @@ A high-performance GPU Solo-mining software for Neptune Cash (NPT) cryptocurrenc
 
 ## 📥 Installation
 
-1. **Download the miner binaries**
+1. **Download the miner package**
    ```bash
-   # Clone or download the repository
-   git clone https://github.com/PrivacyRights/NPT-GPU-Miner.git
-   cd NPT-GPU-Miner
+   # Download the latest miner package from GitHub releases
+   wget https://github.com/PrivacyRights/NPT-GPU-Miner/archive/refs/tags/v0.02.zip
+   
+   # Extract the package
+   unzip v0.02.zip
+   cd NPT-GPU-Miner-0.02
+   
+   # Make binaries executable
+   chmod +x miner_21g miner_42g miner_a6000 miner-bridge
    ```
 
-2. **Make the script executable**
+2. **Download run-miner.sh from CatsPool**
+   ```bash
+   # Download the mining script from CatsPool
+   wget https://catspool.org/mining/run-miner.sh
+   ```
+
+3. **Make the script executable**
    ```bash
    chmod +x run-miner.sh
    ```
 
-3. **Run the miner**
+4. **Run the miner**
    ```bash
    ./run-miner.sh
    ```
@@ -41,8 +53,12 @@ A high-performance GPU Solo-mining software for Neptune Cash (NPT) cryptocurrenc
 Choose the appropriate miner binary based on your GPU:
 
 ### High Memory GPUs (42GB+ VRAM)
-- **L40S, A40, RTX 6000 ADA**
+- **L40S, A40**
 - Use: `./miner_42g`
+
+### RTX A6000 GPUs
+- **RTX A6000**
+- Use: `./miner_a6000`
 
 ### Standard GPUs (21GB+ VRAM)
 - **RTX 4090, RTX 5090**
@@ -50,27 +66,78 @@ Choose the appropriate miner binary based on your GPU:
 
 ## 🎯 Usage
 
+### Wallet Configuration
+
+Before running the miner, configure your Neptune wallet address using the miner-bridge:
+
+```bash
+# Configure your wallet address (run this once)
+./miner-bridge --guesser-address YOUR_WALLET_ADDRESS
+```
+
+### 🏊‍♂️ CatsPool Registration (Strongly Recommended)
+
+**We strongly recommend registering at [https://catspool.org](https://catspool.org)** to generate optimized scripts for your specific GPU setup. This prevents nonce overlap between miners and maximizes your mining efficiency.
+
+#### Generate Custom Script
+1. Visit [https://catspool.org](https://catspool.org)
+2. Select your GPU model and quantity
+3. Download the generated script with optimized nonce offsets
+
+#### Example Generated Script
+```bash
+#!/bin/bash
+
+# Start miner-bridge first
+echo "🔗 Starting miner-bridge..."
+./miner-bridge --guesser-address nolgam...
+
+# Start miners on available GPUs
+for gpu_id in {0..0}; do
+    # Check if GPU exists
+    if nvidia-smi -i $gpu_id &>/dev/null; then
+        nonce_offset=$((855000 + gpu_id * 150))
+        echo "🚀 Starting miner on GPU $gpu_id with nonce offset $nonce_offset"
+        
+        # Start miner (no wallet address needed - handled by bridge)
+        ./miner_42g --gpu $gpu_id --nonce-offset $nonce_offset &
+        
+        sleep 1  # Small delay between starts
+    else
+        echo "⚠️  GPU $gpu_id not available, skipping"
+    fi
+done
+```
+
 ### Basic Usage
 ```bash
-# For high memory GPUs
-./miner_42g --gpu 0 --guesser-address YOUR_WALLET_ADDRESS
+# For high memory GPUs (L40S, A40)
+./miner_42g --gpu 0 --nonce-offset 123456
 
-# For standard GPUs  
-./miner_21g --gpu 0 --guesser-address YOUR_WALLET_ADDRESS
+# For RTX A6000
+./miner_a6000 --gpu 0 --nonce-offset 789012
+
+# For standard GPUs (RTX 4090, RTX 5090)
+./miner_21g --gpu 0 --nonce-offset 345678
 ```
+
+*Note: Wallet address is configured through the miner-bridge, not directly in the miner binary.*
+
+**⚠️ Important**: The nonce offsets shown above are random examples. For optimal mining efficiency and to prevent conflicts with other miners, **get your proper nonce offset from the CatsPool website worker at [https://catspool.org](https://catspool.org)**.
 
 ### Multi-GPU Setup
 ```bash
 # Run on multiple GPUs with different nonce offsets
-./miner_42g --gpu 0 --nonce-offset 0 --guesser-address YOUR_WALLET_ADDRESS &
-./miner_42g --gpu 1 --nonce-offset 150 --guesser-address YOUR_WALLET_ADDRESS &
-./miner_42g --gpu 2 --nonce-offset 300 --guesser-address YOUR_WALLET_ADDRESS &
+./miner_42g --gpu 0 --nonce-offset 0 &
+./miner_42g --gpu 1 --nonce-offset 150 &
+./miner_42g --gpu 2 --nonce-offset 300 &
 ```
 
 ### Command Line Options
 - `--gpu <id>` - GPU device ID (0, 1, 2, etc.)
 - `--nonce-offset <value>` - Nonce offset for multi-GPU setups
-- `--guesser-address <address>` - Your Neptune wallet address
+
+*Wallet address configuration is handled by the miner-bridge component.*
 
 ## 📊 Performance Benchmarks
 
@@ -111,8 +178,10 @@ Choose the appropriate miner binary based on your GPU:
 ### Pool Configuration
 ```bash
 # Example pool connection
-./miner_42g --gpu 0 --guesser-address YOUR_WALLET_ADDRESS
+./miner_42g --gpu 0
 ```
+
+*Configure your Neptune wallet address through the miner-bridge for pool payouts.*
 
 ## 🛠️ Troubleshooting
 
